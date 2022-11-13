@@ -1,5 +1,5 @@
-#ifndef ROW_NODES__H
-#define ROW_NODES__H
+#ifndef ROW_NODES__H__
+#define ROW_NODES__H__
 
 #define TYPE_INTEGER 1
 #define TYPE_VARCHAR 2

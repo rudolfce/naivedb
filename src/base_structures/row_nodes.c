@@ -4,7 +4,7 @@
 #include "../includes/page_operations.h"
 
 
-int get_row_size(table_struct *table);
+int get_row_size(table_struct *table)
 {
     int i, value_size, row_size=0;
 
@@ -33,7 +33,8 @@ page_struct *load_page(table_struct *table, int page_number)
     page_handler = get_page_handler(table, page_number);
     row_size = get_row_size(table);
 
-    fscanf(page_handler, "%d", &n_rows);
+    if(!fscanf(page_handler, "%d", &n_rows))
+        return (page_struct *) NULL;
 
     output_page = (page_struct *) malloc(sizeof(page_struct));
 

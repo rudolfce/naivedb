@@ -14,7 +14,8 @@ typedef struct table_struct{
     int *t_columns;
     int n_columns;
     int n_rows;
-    struct page_struct *loaded_pages;
+    int n_loaded_pages;
+    struct page_struct **loaded_pages;
     char *name;
 } table_struct;
 

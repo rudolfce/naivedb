@@ -4,8 +4,8 @@
 #define TYPE_INTEGER 1
 #define TYPE_VARCHAR 2
 
-struct page_struct;
-struct table_struct;
+// struct page_struct;
+// struct table_struct;
 
 /* A table defined by name, size and column types.
    A page cache vector is provided to avoid loading
@@ -17,10 +17,11 @@ typedef struct table_struct{
     int n_loaded_pages;
     struct page_struct **loaded_pages;
     char *name;
+    struct database *table_database;
 } table_struct;
 
 typedef struct page_struct{
-    table_struct *table;
+    struct table_struct *table;
     int page_number;
     int n_rows;
     char *page_start;

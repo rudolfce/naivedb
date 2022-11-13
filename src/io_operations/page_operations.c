@@ -1,13 +1,20 @@
 #include<stdio.h>
 #include "../includes/page_operations.h"
 #include "../includes/table.h"
+#include "../includes/database.h"
 
 
-void *get_table_path(table_struct *table, char *path);
+void get_table_path(table_struct *table, char *path)
+{
+    sprintf(path, "%s/%s/%s", table->table_database->farm->path, table->table_database->name, table->name);
+
+    return;
+}
 
 FILE *get_page_handler(table_struct *table, int page_number)
 {
     char table_path[256];
+
     get_table_path(table, table_path);
 
     return fopen(table_path, "r");
@@ -15,7 +22,8 @@ FILE *get_page_handler(table_struct *table, int page_number)
 
 int populate_page_from_handler(page_struct *page, FILE *page_handler)
 {
-    char c, i;
+    char c;
+    int i;
 
     c = fgetc(page_handler);
     i = 0;

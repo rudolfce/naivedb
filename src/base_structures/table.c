@@ -1,6 +1,6 @@
 #include<stdio.h>
 #include<malloc.h>
-#include "../includes/row_nodes.h"
+#include "../includes/table.h"
 #include "../includes/page_operations.h"
 
 

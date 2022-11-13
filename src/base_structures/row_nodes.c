@@ -1,7 +1,5 @@
 #include<stdio.h>
-#include<string.h>
 #include<malloc.h>
-#include<unistd.h>
 #include "../includes/row_nodes.h"
 #include "../includes/page_operations.h"
 

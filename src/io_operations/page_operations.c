@@ -6,7 +6,7 @@
 
 void get_table_path(table_struct *table, char *path)
 {
-    sprintf(path, "%s/%s/%s", table->table_database->farm->path, table->table_database->name, table->name);
+    sprintf(path, "%s/%s/%s", table->table_database->database_farm->path, table->table_database->name, table->name);
 
     return;
 }

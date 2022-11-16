@@ -33,28 +33,22 @@ int free_table(table_struct *table)
         return 0;
 
     if(table->name)
-    {
         free(table->name);
-    }
+
     if(table->t_columns)
-    {
         free(table->t_columns);
-    }
-    if(table->column_names)
-    {
-        for(i=0; i<table->n_columns; i++)
-        {
+
+    if(table->column_names) {
+        for(i=0; i<table->n_columns; i++) {
             if(table->column_names)
                 free(table->column_names[i]);
         }
         free(table->column_names);
     }
-    if(table->loaded_pages)
-    {
+    if(table->loaded_pages) {
         for(i=0; i<table->n_loaded_pages; i++)
-        {
             free_page(table->loaded_pages[i]);
-        }
+
         free(table->loaded_pages);
     }
 
@@ -64,16 +58,15 @@ int free_table(table_struct *table)
 
 int resize_columns_vectors(table_struct *table, int new_size)
 {
-    if(!table->t_columns) {
+    if(!table->t_columns)
         table->t_columns = (int *) malloc(new_size * sizeof(int));
-    } else {
+    else
         table->t_columns = (int *) realloc(table->t_columns, new_size * sizeof(int));
-    }
-    if(!table->column_names) {
+
+    if(!table->column_names)
         table->column_names = (char **) malloc(new_size * sizeof(char **));
-    } else {
+    else
         table->column_names = (char **) realloc(table->column_names, new_size * sizeof(char **));
-    }
 
     return new_size;
 }

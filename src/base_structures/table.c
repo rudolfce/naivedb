@@ -110,6 +110,20 @@ int get_row_size(table_struct *table)
     return row_size;
 }
 
+page_struct *initialize_page()
+{
+    page_struct *output_page;
+
+    output_page = (page_struct *) malloc(sizeof(page_struct));
+
+    output_page->n_rows = 0;
+    output_page->table = NULL;
+    output_page->page_number = 0;
+    output_page->page_start = (char *) NULL;
+
+    return output_page;
+}
+
 page_struct *load_page(table_struct *table, int page_number)
 {
     int n_rows, row_size;
@@ -119,15 +133,13 @@ page_struct *load_page(table_struct *table, int page_number)
     page_handler = get_page_handler(table, page_number);
     row_size = get_row_size(table);
 
-    if(!fscanf(page_handler, "%d", &n_rows))
-        return (page_struct *) NULL;
+    output_page = initialize_page();
 
-    output_page = (page_struct *) malloc(sizeof(page_struct));
-
-    output_page->n_rows = n_rows;
     output_page->table = table;
     output_page->page_number = page_number;
-    output_page->page_start = (char *) malloc(row_size * n_rows + 1);
+
+    if(!fscanf(page_handler, "%d", &n_rows))
+        return (page_struct *) NULL;
 
     populate_page_from_handler(output_page, page_handler);
 

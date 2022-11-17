@@ -1,4 +1,5 @@
 #include<stdio.h>
+#include<string.h>
 #include "../includes/page_operations.h"
 #include "../includes/table.h"
 #include "../includes/database.h"
@@ -36,4 +37,30 @@ int populate_page_from_handler(page_struct *page, FILE *page_handler)
     }
 
     return i;
+}
+
+void set_column(char *output, int column_type, const char *value)
+{}
+
+/* Input file reading... */
+int load_row(FILE *file_handler, char *output, int max_len, struct table_struct *table)
+{
+    char input[2001];
+    const char *tok;
+    int result;
+    int i;
+
+    result = fscanf(file_handler, "%2000s\n", input);
+
+    if(result == EOF) return EOF;
+
+    for(
+        tok = strtok(input, ","), i=0;
+        tok && *tok && i < table->n_columns;
+        tok = strtok(NULL, ",\n"), i++
+    ) {
+        set_column(output, table->t_columns[i], tok);
+    }
+
+    return result;
 }

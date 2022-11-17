@@ -1,5 +1,7 @@
 # binary files
 *.o
-.vscode
 *.[c]o
 main
+
+# Data files
+*.csv

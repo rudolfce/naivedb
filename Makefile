@@ -1,5 +1,5 @@
 CC=gcc
-CFLAGS=-Wall -O2
+CFLAGS=-Wall -O2 -g
 
 INCLUDES = src/includes/page_operations.h src/includes/table.h
 
